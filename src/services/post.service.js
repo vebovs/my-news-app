@@ -9,7 +9,7 @@ if(process.env.NODE_ENV === 'production') {
 class postService {
 
     async getPosts() {
-        return await axios.get(API_URL)
+        return await axios.get(API_URL + 'posts')
         .then(res => {
             return res.data;
         }).catch(error => console.log(error));
@@ -26,7 +26,9 @@ class postService {
 
     async updatePost(post) {
         return await axios.patch(API_URL + 'update', {
-            post
+            id: post.id,
+            title: post.title,
+            text: post.text
         }).then(res => {
             return res.data;
         })
@@ -34,7 +36,7 @@ class postService {
     }
 
     async deletePost(id) {
-        return await axios.delete(API_URL + 'delete/:' + id)
+        return await axios.delete(API_URL + 'delete/' + id)
         .then(res => {
             return res.data;
         });

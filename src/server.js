@@ -39,7 +39,7 @@ let posts = [
     }
 ];
 
-app.get('/', (req, res) => {
+app.get('/posts', (req, res) => {
     try {
         res.json(posts);
         res.status(200);
@@ -77,7 +77,7 @@ app.post('/post', (req, res) => {
 
 app.patch('/update', (req, res) => {
     try {
-        posts.map((e) => {
+        posts = posts.map((e) => {
             if(e.id === req.body.id) {
                 e.title = req.body.title;
                 e.text = req.body.text;
